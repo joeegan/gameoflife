@@ -1,4 +1,6 @@
-//(function(){
+(function(){
+
+   window.Environment = {};
 
    var canvas, context;
    var canvasW = document.body.clientWidth;
@@ -6,34 +8,37 @@
    var xPositions = [];
    var yPositions = [];
    var data = [];
-   var gridSize = 160;
+   var animationSpeed = 10; // miliseconds
+   var trueColour = 'rgb(255,255,255)';
+   var falseColour = 'rgb(000,000,000)';
+   var rowLength, colLength, cellWidth, cellHeight;
+
+   // example format to convert ajax loaded patterns to
    var glider = [[0,0,1],
                  [1,0,1],
                  [0,1,1]];
 
-   var glider2 = [[0,1,0],
-               [0,0,1],
-               [1,1,1]];
+   Environment.init = function(gridSize){
+      Environment.gridSize = gridSize;
+      createGrid();
+      rowLength = data.length;
+      colLength = data[0].length;
+      cellWidth = canvasW/rowLength;
+      cellHeight = canvasH/colLength;
+      prepareCanvas();
+      calculateGridPositions();
+      populateGrid();
+      animate();
+   };
 
-   var lightweightSpaceship = [[0,1,0,0,1],
-                               [1,0,0,0,0],
-                               [1,0,0,0,1],
-                               [1,1,1,1,0],
-                               [0,0,0,0,0]];
-
-   createGrid();
-
-   var trueColour = 'rgb(255,255,255)';
-   var falseColour = 'rgb(000,000,000)';
-   var rowLength = data.length;
-   var colLength = data[0].length;
-   var cellWidth = canvasW/rowLength;
-   var cellHeight = canvasH/colLength;
-
-   prepareCanvas();
-   calculateGridPositions();
-   populateGrid(data);
-   animate();
+   Environment.mergeShape = function(shape, x, y){
+      var i, j;
+      for(i=0; i<(shape.length); i++) {
+         for(j=0; j<shape[0].length; j++) {
+            data[y+i][x+j] = shape[i][j];
+         }
+      }
+   };
 
    function prepareCanvas(){
       canvas = document.createElement('canvas');
@@ -47,14 +52,14 @@
       setInterval(function(){
          data = getNewData(data);
          populateGrid(data);
-      }, 500);
+      }, animationSpeed);
    }
 
    function createGrid(){
       var i, j;
-      for (i=0; i<gridSize; i++) {
+      for (i=0; i<Environment.gridSize; i++) {
          var rowArr = [];
-         for (j=0; j<gridSize; j++) {
+         for (j=0; j<Environment.gridSize; j++) {
             rowArr.push(0);
          }
         data.push(rowArr);
@@ -95,15 +100,6 @@
       return newData;
    }
 
-   function mergeShape(shape, y, x){
-      var i, j;
-      for(i=0; i<shape.length; i++) {
-         for(j=0; j<shape.length; j++) {
-            data[y+i][x+j] = shape[i][j];
-         }
-      }
-   }
-
    function getCell(y,x) {
       if (typeof data[y] == "undefined") {
          data[y] = data[rowLength-(Math.abs(y))];
@@ -124,7 +120,7 @@
       }
    }
 
-   function populateGrid(data){
+   function populateGrid(){
       var cellWidth = xPositions[1];
       var cellHeight = yPositions[1];
       var i, j;
@@ -142,4 +138,4 @@
       context.fill();
    }
 
-//})();
+})();
