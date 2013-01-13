@@ -6,6 +6,7 @@
    var xPositions = [];
    var yPositions = [];
    var data = [];
+   var gridSize = 160;
    var glider = [[0,0,1],
                  [1,0,1],
                  [0,1,1]];
@@ -22,8 +23,8 @@
 
    createGrid();
 
-   var trueColour = 'rgb(111,214,255)';
-   var falseColour = 'rgb(214,214,009)';
+   var trueColour = 'rgb(255,255,255)';
+   var falseColour = 'rgb(000,000,000)';
    var rowLength = data.length;
    var colLength = data[0].length;
    var cellWidth = canvasW/rowLength;
@@ -50,9 +51,10 @@
    }
 
    function createGrid(){
-      for (var i=0; i<100; i++) {
+      var i, j;
+      for (i=0; i<gridSize; i++) {
          var rowArr = [];
-         for (var j=0;j<100;j++) {
+         for (j=0; j<gridSize; j++) {
             rowArr.push(0);
          }
         data.push(rowArr);
@@ -126,6 +128,11 @@
       var cellWidth = xPositions[1];
       var cellHeight = yPositions[1];
       var i, j;
+      context.strokeStyle = '#000'; // red
+      context.fillStyle = '#000';
+      context.fillRect(0, 0, canvasW, canvasH);
+      context.fill();
+
       for (i = 0; i<colLength; i++) {
          for (j = 0; j<rowLength; j++) {
             context.fillStyle = (data[i][j]) ? trueColour : falseColour;

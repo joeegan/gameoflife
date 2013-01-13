@@ -1,8 +1,8 @@
-mergeShape(glider, 70, 45);
-mergeShape(glider, 20, 20);
-mergeShape(glider2, 10, 10);
-mergeShape(glider2, 0, 0);
-mergeShape(lightweightSpaceship, 30, 30);
+//mergeShape(glider, 70, 45);
+//mergeShape(glider, 20, 20);
+//mergeShape(glider2, 10, 10);
+//mergeShape(glider2, 0, 0);
+//mergeShape(lightweightSpaceship, 30, 30);
 
 var params = getParams();
 
@@ -14,7 +14,7 @@ function getPattern(url){
    var xmlhttp = new XMLHttpRequest();
    xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//         mergeShape(translatePattern(xmlhttp.responseText),100,100);
+         mergeShape(translatePattern(xmlhttp.responseText),20,20);
       }
    }
    xmlhttp.open("GET",url,true);
@@ -22,7 +22,9 @@ function getPattern(url){
 }
 
 function translatePattern(response) {
-   var arrs = response.split("\n").splice(3);
+   var arrs = response.split("\n").filter(function(el,idx,arr){
+      return !el.match(/^!/);
+   });
    arrs.pop();
    var resultArr = [];
    var patternLength = 0;
