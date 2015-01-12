@@ -8,9 +8,9 @@ Populate a comma seperated list of patterns found in the [patterns directory](ht
 Examples
 --
 
-* [joeegan.co.uk/gameoflife/?gunstar2](http://joeegan.co.uk/gameoflife/?gunstar2)
-* [joeegan.co.uk/gameoflife/?glidersbythedozen](http://joeegan.co.uk/gameoflife/?glidersbythedozen)
-* [joeegan.co.uk/gameoflife/?boat,bunnies,glider,mwss,lwss,hectic,backrake2,ants,orion,weekender,germ,glidersbythedozen,gourmet,pedestle,pennylane,r2d2,sailboat,x66,wing,](http://joeegan.co.uk/gameoflife/?boat,bunnies,glider,mwss,lwss,hectic,backrake2,ants,orion,weekender,germ,glidersbythedozen,gourmet,pedestle,pennylane,r2d2,sailboat,x66,wing,)
+* [joeegan.github.io/gameoflife/?gunstar2](http://joeegan.github.io/gameoflife/?gunstar2)
+* [joeegan.co.uk/gameoflife/?glidersbythedozen](http://joeegan.github.io/gameoflife/?glidersbythedozen)
+* [joeegan.github.io/gameoflife/?boat,bunnies,glider,mwss,lwss,hectic,backrake2,ants,orion,weekender,germ,glidersbythedozen,gourmet,pedestle,pennylane,r2d2,sailboat,x66,wing,](http://joeegan.co.uk/gameoflife/?boat,bunnies,glider,mwss,lwss,hectic,backrake2,ants,orion,weekender,germ,glidersbythedozen,gourmet,pedestle,pennylane,r2d2,sailboat,x66,wing,)
 
 Ideas
 --
